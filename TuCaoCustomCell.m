@@ -24,6 +24,7 @@
         [self.contentView addSubview:self.tuCaoAvatarImageView];
         [self.contentView addSubview:self.tuCaoContentLabel];
         [self.contentView addSubview:self.tuCaoUserLabel];
+        [self setTuCaoFrames];
     }
     return self;
 }

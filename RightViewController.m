@@ -28,6 +28,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - view controller UI settings
+
 - (void)initBackground {
     UIImageView *backgroudImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lake.jpg"]];
     backgroudImg.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -64,6 +66,8 @@
     self.rightMenuTableView.backgroundColor = [UIColor clearColor];
 }
 
+#pragma mark - tableview data source method
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.rightMenuData count];
 }
@@ -78,6 +82,21 @@
     }
     return cell;
 }
+
+#pragma mark - table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger row = indexPath.row;
+    switch (row) {
+        case 2:
+            [self.navigationController popViewControllerAnimated:NO];
+            break;
+            
+        default:
+            break;
+    }
+}
+
 /*
 #pragma mark - Navigation
 

@@ -8,7 +8,7 @@
 #import "AppMacro.h"
 #import "ThreeViewsController.h"
 
-@interface LoginViewController ()
+@interface LoginViewController () <UITextFieldDelegate>
 
 @end
 
@@ -40,11 +40,14 @@
     self.userName = [[UITextField alloc] initWithFrame:CGRectMake(textPointX, textPointY, textWidth, textHeight)];
     [self.userName setBackgroundColor:[UIColor whiteColor]];
     self.userName.placeholder = @"用户名";
+    //必须设置代理！以实现代理的协议方法
+    self.userName.delegate = self;//代理是当前的视图控制器
     [self.view addSubview:self.userName];
     
     self.userPassword = [[UITextField alloc] initWithFrame:CGRectMake(textPointX, textPointY + 60, textWidth, textHeight)];
     self.userPassword.placeholder = @"密码";
     self.userPassword.secureTextEntry = YES;
+    self.userPassword.delegate = self;
     [self.userPassword setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:self.userPassword];
     
@@ -68,6 +71,7 @@
     [self.loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.loginButton.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
     self.loginButton.tag = 1;
+    self.loginButton.enabled = YES;
     [self.loginButton addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.loginButton];
     
@@ -78,26 +82,53 @@
     [self.signUpButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.signUpButton.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
     self.signUpButton.tag = 2;
+    self.signUpButton.enabled = YES;
     [self.signUpButton addTarget:self action:@selector(buttonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.signUpButton];
-    
+ 
+    //设置点击手势
+    UITapGestureRecognizer *closeKeyBoardTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeKeyBoard)];
+    [self.view addGestureRecognizer:closeKeyBoardTap];
 }
+
+#pragma mark - custom method
 
 - (void)buttonDidClick:(UIButton *)sender {
     if (sender.tag == 1) {
         ThreeViewsController *mainViewController = [[ThreeViewsController alloc] init];
         [self.navigationController pushViewController:mainViewController animated:YES];
         //[self.navigationController setNavigationBarHidden:YES];
+        [self.userName resignFirstResponder];
+        [self.userPassword resignFirstResponder];
+        self.loginButton.enabled = NO;
+        self.signUpButton.enabled = NO;
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ccc" message:@"jjj" delegate:nil cancelButtonTitle:@"adsaf" otherButtonTitles:nil];
         [alert show];
     }
 }
 
+- (void)closeKeyBoard {
+    [self.userPassword resignFirstResponder];
+    [self.userName resignFirstResponder];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - text field delegate
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [textField resignFirstResponder];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
 
 /*
 #pragma mark - Navigation

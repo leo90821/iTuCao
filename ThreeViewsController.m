@@ -67,6 +67,7 @@
     [self.view addSubview:self.midView.view];
 }
 
+//显示左菜单
 - (void)showLeftMenu:(id)sender {
     //animate to show left menu
     NSTimeInterval duration = 0.2;

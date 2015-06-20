@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ * 自定义吐槽列表单元格
+ **/
+
 @interface TuCaoCustomCell : UITableViewCell
 @property (strong, nonatomic) UILabel *tuCaoUserLabel;
 @property (strong, nonatomic) UILabel *tuCaoContentLabel;
@@ -15,6 +19,10 @@
 @property (strong, nonatomic) UIImageView *tuCaoAvatarImageView;
 @property CGFloat contentH;
 
+/**
+ * 设置单元格布局
+ **/
 - (void)setTuCaoFrames;
+
 - (NSInteger)heightOfCell;
 @end

@@ -10,8 +10,8 @@
 
 @interface LoginViewController : UIViewController
 
-@property (strong, nonatomic) UITextField *userName;
-@property (strong, nonatomic) UITextField *userPassword;
+@property (strong, nonatomic) UITextField *userName;        //  用户名输入框
+@property (strong, nonatomic) UITextField *userPassword;    //  用户密码输入框
 @property (strong, nonatomic) UIButton *loginButton;
 @property (strong, nonatomic) UIButton *signUpButton;
 

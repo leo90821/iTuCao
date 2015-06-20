@@ -61,6 +61,7 @@
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:17];
         cell.imageView.image = [UIImage imageNamed:@"_0025_star.png"];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return cell;
 }
