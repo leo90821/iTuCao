@@ -6,3 +6,19 @@
 
 # 凑热闹
 <p></p>
+
+
+```
+
+<?php
+  namespace Home\Controller;
+  
+  use Think\Controller;
+  
+  class IndexController extends Controller {
+    public function index() {
+      echo 'Test';
+    }
+  }
+
+```
