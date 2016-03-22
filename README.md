@@ -8,7 +8,7 @@
 <p></p>
 
 
-```
+```php
 
 <?php
   namespace Home\Controller;
